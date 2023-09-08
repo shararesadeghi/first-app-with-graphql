@@ -1,14 +1,19 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {gql,useMutation} from '@apollo/client';
 
 const CREATE_USER = gql`
-    mutation{
-  createUser(input:{
-    name:"sheri"
-    username:"sheri.s"
-    email:"sheri@gmail.com"
-    phone:"09141841111"
-  }){
+    mutation CreateUser($name:String!
+     $username:String! 
+     $email:String! 
+     $phone:String!){
+      createUser(
+         input:{
+             name:$name
+             username:$username
+             email:$email
+             phone:$phone
+    
+      }){
     id,
     name,
     username,
@@ -20,11 +25,28 @@ const CREATE_USER = gql`
 
 const CreateUser = () => {
 
-    const [createUser,{loading,data,error,called}] = useMutation(CREATE_USER);
+    const [name,setName] = useState("");
+    const [username,setUsername] = useState("");
+    const [email,setEmail] = useState("");
+    const [phone,setPhone] = useState("");
+
+    const [createUser,{loading,data,error,called}] = useMutation(CREATE_USER,{
+        variables:{
+            name:name,
+            username:username,
+            email:email,
+            phone:phone
+
+        }
+    });
     console.log({loading,data,error,called})
     return (
         <div>
-            <button onClick={()=>createUser()}>Ceate user</button>
+            <input value={name} onChange={e=>setName(e.target.value)} placeholder="Enter your name"/>
+            <input value={username} onChange={e=>setUsername(e.target.value)} placeholder="Enter your username"/>
+            <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="Enter your email"/>
+            <input value={phone} onChange={e=>setPhone(e.target.value)} placeholder="Enter your phone"/>
+            <button onClick={()=>createUser()}>Create user</button>
         </div>
     );
 };
