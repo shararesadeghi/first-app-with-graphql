@@ -1,8 +1,10 @@
 // import Users from './components/Users';
 // import User from './components/User';
 // import UserOnClick from './components/UserOnClick';
+// import CreateUser from './components/CreateUser';
+// import UpadteUser from './components/UpadteUser';
+import DeleteUser from './components/DeleteUser';
 import './App.css';
-import CreateUser from './components/CreateUser';
 
 function App() {
   return (
@@ -10,7 +12,9 @@ function App() {
      {/* <Users/> */}
      {/* <User/> */}
      {/* <UserOnClick/> */}
-     <CreateUser/>
+     {/* <CreateUser/> */}
+     {/* <UpadteUser/> */}
+     <DeleteUser/>
     </div>
   );
 }

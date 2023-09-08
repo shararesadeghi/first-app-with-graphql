@@ -15,6 +15,8 @@ const UserOnClick = () => {
     const [getUser,{loading,data,error,called}] = useLazyQuery(GET_USER,{
         variables:{id:id}
     })
+
+    console.log({loading,data,error,called});
     return (
         <div>
             <input placeholder="Enter your id" value={id} onChange={changeHandler}/>
